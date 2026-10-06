@@ -4,8 +4,6 @@ class AgentHq < Formula
   version "0.9.1-main.17"
   license "MIT"
 
-  conflicts_with "hq", because: "both install an `hq` binary"
-
   on_macos do
     on_arm do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-darwin-aarch64.tar.gz"
@@ -23,6 +21,8 @@ class AgentHq < Formula
       sha256 "cc57fa03207d63832ad158dbe303aa48cbf27c35aff885f211ecf848698fc797"
     end
   end
+
+  conflicts_with "hq", because: "both install an `hq` binary"
 
   def install
     bin.install "hq"

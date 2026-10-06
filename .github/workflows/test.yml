@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  formula:
+    name: Install and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Tap this repository
+        run: |
+          eval "$(brew shellenv 2>/dev/null || /home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap CalvinMagezi/tap "$GITHUB_WORKSPACE"
+          echo "$(brew --prefix)/bin" >> "$GITHUB_PATH"
+      - name: Audit
+        run: brew audit --strict CalvinMagezi/tap/agent-hq
+      - name: Install
+        run: brew install CalvinMagezi/tap/agent-hq
+      - name: Test
+        run: |
+          brew test CalvinMagezi/tap/agent-hq
+          hq --version

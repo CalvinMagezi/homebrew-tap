@@ -1,0 +1,40 @@
+name: Bump formula
+
+# Regenerates the formula from the signed stable release manifest of CalvinMagezi/hq and commits
+# it when the version changed. The hashes come only from a manifest whose signature verified.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: bump
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    name: Update the formula
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # commit the regenerated formula
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+      - name: Regenerate
+        run: ./scripts/bump.sh
+      - name: Commit when changed
+        run: |
+          if git diff --quiet -- Formula/agent-hq.rb; then
+            echo "formula already current"
+            exit 0
+          fi
+          version="$(sed -n 's/^  version "\(.*\)"/\1/p' Formula/agent-hq.rb)"
+          git config user.name "HQ Maintainers"
+          git config user.email "noreply@users.noreply.github.com"
+          git add Formula/agent-hq.rb
+          git commit -m "agent-hq $version"
+          git push

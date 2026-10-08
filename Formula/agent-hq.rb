@@ -1,24 +1,24 @@
 class AgentHq < Formula
   desc "Local-first AI agent hub: one binary, a markdown vault, chat relays and a web UI"
   homepage "https://agent-hq.online"
-  version "0.9.1-main.44"
+  version "0.9.1-main.99"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-darwin-aarch64.tar.gz"
-      sha256 "43a9f5e7c999df21619ac168b9fa2fafd4cacb0af46e44f9dda4cd727c3b73df"
+      sha256 "d1355a8bcdf391458cdaf79376f0b77bee00010bf6a3bd6340dcb8930c45e062"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-linux-aarch64.tar.gz"
-      sha256 "7b4d91c2e71975d5a282b569663e342958511e24d30777df18cd534acccb93e5"
+      sha256 "20bd7fe8a293ec09ada22c48357e255527e0b883d6c8956a1c27789af7573d35"
     end
     on_intel do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-linux-x86_64.tar.gz"
-      sha256 "2ee9c47a11aca285ee7c2c6db4e477553f4d2f902fb38ef360cb47e240dc6ff4"
+      sha256 "4d8c55f2f7e4deef41354dacd5ee70353a30a7dd4677ecb9a1a5c484b46747d4"
     end
   end
 

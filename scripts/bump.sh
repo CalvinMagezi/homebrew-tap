@@ -64,14 +64,16 @@ sha_for() {
         || die "release $version has no $1 build"
 }
 darwin_arm="$(sha_for darwin-aarch64)"
+darwin_x86="$(sha_for darwin-x86_64)"
 linux_arm="$(sha_for linux-aarch64)"
 linux_x86="$(sha_for linux-x86_64)"
-for h in "$darwin_arm" "$linux_arm" "$linux_x86"; do
+for h in "$darwin_arm" "$darwin_x86" "$linux_arm" "$linux_x86"; do
     printf '%s' "$h" | grep -Eq '^[0-9a-f]{64}$' || die "malformed sha256 in manifest"
 done
 
 sed -e "s|@VERSION@|$version|g" \
     -e "s|@SHA_DARWIN_ARM@|$darwin_arm|g" \
+    -e "s|@SHA_DARWIN_X86@|$darwin_x86|g" \
     -e "s|@SHA_LINUX_ARM@|$linux_arm|g" \
     -e "s|@SHA_LINUX_X86@|$linux_x86|g" \
     -e "s|@REPO@|$REPO|g" \

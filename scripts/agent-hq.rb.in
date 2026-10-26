@@ -9,6 +9,10 @@ class AgentHq < Formula
       url "https://github.com/@REPO@/releases/download/v#{version}/hq-#{version}-darwin-aarch64.tar.gz"
       sha256 "@SHA_DARWIN_ARM@"
     end
+    on_intel do
+      url "https://github.com/@REPO@/releases/download/v#{version}/hq-#{version}-darwin-x86_64.tar.gz"
+      sha256 "@SHA_DARWIN_X86@"
+    end
   end
 
   on_linux do

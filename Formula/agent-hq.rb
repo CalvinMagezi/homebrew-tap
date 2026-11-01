@@ -1,28 +1,28 @@
 class AgentHq < Formula
   desc "Local-first AI agent hub: one binary, a markdown vault, chat relays and a web UI"
   homepage "https://agent-hq.online"
-  version "0.9.1-main.243"
+  version "0.9.1-main.300"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-darwin-aarch64.tar.gz"
-      sha256 "19e029f7852045e53450abf36734ed52ca4fabe810ffa7a9cc937119b986011a"
+      sha256 "b8090677afd8ef8e986cfa2262a34b2583f3ca859848c72975cf4522179903e6"
     end
     on_intel do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-darwin-x86_64.tar.gz"
-      sha256 "35cafda063950aee733c3b74063ebdc6e6fafd812a55a03939b7aee1b9f90374"
+      sha256 "7fc07040d0425a6c37695727be21b4e2695e3d9e9d129cdfa1b3cf127ddfa180"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-linux-aarch64.tar.gz"
-      sha256 "737ba35aa67044e741f4b7690dbd67f899747cfdd9bdb466fdb98be505b7ff97"
+      sha256 "9d6c89b9d40b21146dc8c61716c2be85a57ca498f80c5101751c3fed559b8862"
     end
     on_intel do
       url "https://github.com/CalvinMagezi/hq/releases/download/v#{version}/hq-#{version}-linux-x86_64.tar.gz"
-      sha256 "146bdf165bbcefa161a3aafe7ddf9625c433cf2247a7c684d21c418529ecb393"
+      sha256 "7df9d10688a1f05e17ad841ebbb6fae98ccafd7603a1905180cc43b6c01d17c5"
     end
   end
 
